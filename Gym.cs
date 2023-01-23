@@ -11,9 +11,13 @@ namespace FitnessKing
     /// </summary>
     public class Gym
     {
+        private object _lock = new object();
         public void StartWorkout(IExercise exercise)
         {
-            exercise.Perform();
+            lock (_lock)
+            {
+                exercise.Perform();
+            }
         }
     }
 }

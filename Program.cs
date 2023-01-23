@@ -6,14 +6,10 @@ internal class Program
     {
         Gym gym = new Gym();
         IExercise exercise = new Running();
-        gym.StartWorkout(exercise);
-        exercise = new AdvancedRunning();
-        gym.StartWorkout(exercise);
-        exercise = new Weightlifting();
-        gym.StartWorkout(exercise);
-        IAdvancedExercise advancedExercise = new AdvancedWeightlifting();
-        advancedExercise.WarmUp();
-        advancedExercise.Perform();
-        advancedExercise.CoolDown();
+
+        Thread thread1 = new Thread(() => gym.StartWorkout(exercise));
+        Thread thread2 = new Thread(() => gym.StartWorkout(exercise));
+        thread1.Start();
+        thread2.Start();
     }
 }
